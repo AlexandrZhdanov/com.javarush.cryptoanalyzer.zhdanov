@@ -21,7 +21,7 @@ public class Main {
         } else if (i == 2) {
             Decoding.doDecrypt();
         } else if (i == 3) {
-            BruteForce.toBruteForce();
+            BruteForce.doBruteForce();
 
         } else {
             System.out.println("Сделайте корректный выбор режима работы.");

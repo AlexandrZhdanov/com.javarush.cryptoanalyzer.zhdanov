@@ -6,7 +6,7 @@ import java.io.*;
 
 
 public class BruteForce {
-    public static void toBruteForce() throws IOException {
+    public static void doBruteForce() throws IOException {
 
         Scanner console = new Scanner(System.in);
 
@@ -17,26 +17,26 @@ public class BruteForce {
         String read = Files.readString(Path.of(in));
         StringBuilder strBuilder = new StringBuilder();
         char c;
-        for (int j = 1; j <= Main.ALPHABET.length(); j++) {
-            for (int i = 0; i < read.length(); i++) {
+        for (int i = 1; i <= 32; i++) {
+            for (int j = 0; j < read.length(); j++) {
 
-                c = read.charAt(i);
+                c = read.charAt(j);
 
                 if (Character.isLetter(c)) {
 
-                    c = (char) (read.charAt(i) - j);
+                    c = (char) (read.charAt(j) - j);
 
-                    if ((Character.isLowerCase(read.charAt(i)) && c > 'я')
-                            || (Character.isUpperCase(read.charAt(i)) && c > 'Я'))
+                    if ((Character.isLowerCase(read.charAt(j)) && c > 'я')
+                            || (Character.isUpperCase(read.charAt(j)) && c > 'Я'))
 
-                        c = (char) (read.charAt(i) - (Main.ALPHABET.length() + j));
+                        c = (char) (read.charAt(j) - (Main.ALPHABET.length() + j));
                 }
                 strBuilder.append(c);
-                String cipherText = strBuilder.toString();
+                String cipher = strBuilder.toString();
 
 
                 try (PrintWriter out = new PrintWriter(str)) {
-                    out.print(cipherText);
+                    out.print(cipher);
 
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);

@@ -11,7 +11,7 @@ public class Еncryption {
         System.out.println("Введите адрес файла на шифровку.");
         String in = console.nextLine();
         System.out.println("Введите адрес файла для записи.");
-        String adress = console.nextLine();
+        String address = console.nextLine();
         System.out.println("Введите ключ для шифрования");
         int key = console.nextInt();
         key = key % 32;
@@ -33,10 +33,10 @@ public class Еncryption {
                     ch = (char) (read.charAt(i) + key);
             }
             strBuilder.append(ch);
-            String cipherText = strBuilder.toString();
+            String cipher = strBuilder.toString();
 
-            try (PrintWriter out = new PrintWriter(adress)) {
-                out.print(cipherText);
+            try (PrintWriter out = new PrintWriter(address)) {
+                out.print(cipher);
             }
         }
     }
