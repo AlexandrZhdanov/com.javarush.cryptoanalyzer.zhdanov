@@ -39,5 +39,37 @@ public class Decoding {
             }
         }
     }
-}
+    public static void doDecrypt(int j) throws IOException {
+        Scanner console = new Scanner(System.in);
+        System.out.println("Введите адрес файла на расшифровку.");
+        String in = console.nextLine();
+        System.out.println("Введите адрес файла для записи.");
+        String line = console.nextLine();
+        String string = Files.readString(Path.of(in));
+        StringBuilder strBuilder = new StringBuilder();
+        char ch;
+        for (int i = 0; i < string.length(); i++) {
+            ch = string.charAt(i);
 
+
+            if (Character.isLetter(ch)) {
+                ch = (char) (string.charAt(i) - j);
+
+                if ((Character.isLowerCase(string.charAt(i)) && ch > 'я')
+                        || (Character.isUpperCase(string.charAt(i)) && ch > 'Я'))
+
+                    ch = (char) (string.charAt(i) - j);
+            }
+            strBuilder.append(ch);
+            String cipherText = strBuilder.toString();
+
+            try (PrintWriter out = new PrintWriter(line)) {
+                out.print(cipherText);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+}
